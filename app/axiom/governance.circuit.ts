@@ -6,6 +6,7 @@ import {
   checkEqual,
   isEqual,
   or,
+  log
 } from '@axiom-crypto/client';
 
 export interface CircuitInputs {
