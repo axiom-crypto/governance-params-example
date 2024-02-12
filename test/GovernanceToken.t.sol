@@ -20,7 +20,7 @@ contract GovernanceTokenTest is AxiomTest {
     GovernanceToken public governanceToken;
     GovernanceNFT public governanceNft;
 
-    AxiomInput public defaultInput;
+    AxiomInput public input;
     bytes32 public querySchema;
 
     function setUp() public {
@@ -28,14 +28,14 @@ contract GovernanceTokenTest is AxiomTest {
 
         governanceNft = GovernanceNFT(0x271AF2Af5eDeFD176c23bAd4C7139e9C37E3B110);
 
-        defaultInput = AxiomInput({
+        input = AxiomInput({
             nftContract: address(governanceNft),
             mintBlock: 5_140_363,
             mintTxNo: 20,
             vote: 1
         });
 
-        querySchema = axiomVm.readCircuit("app/axiom/governance.circuit.ts", abi.encode(defaultInput));
+        querySchema = axiomVm.readCircuit("app/axiom/governance.circuit.ts");
 
         governanceToken = new GovernanceToken(
             address(governanceNft),
@@ -49,7 +49,7 @@ contract GovernanceTokenTest is AxiomTest {
 
     function test_simple_example() public {
         // create a query into Axiom with default parameters
-        Query memory q = query(querySchema, abi.encode(defaultInput), address(governanceToken));
+        Query memory q = query(querySchema, abi.encode(input), address(governanceToken));
 
         // send the query to Axiom
         q.send();

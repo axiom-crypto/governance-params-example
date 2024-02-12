@@ -16,6 +16,13 @@ export interface CircuitInputs {
   vote: CircuitValue,
 }
 
+export const defaultInputs = {
+  "nftContract": "0x271AF2Af5eDeFD176c23bAd4C7139e9C37E3B110",
+  "mintBlock": 5140363,
+  "mintTxNo": 20,
+  "vote": 1
+}
+
 export const circuit = async (inputs: CircuitInputs) => {
   // Autonomous Community Governance
   // Example NFT mint tx here:
