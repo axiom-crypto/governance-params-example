@@ -8,15 +8,18 @@ import { useAccount } from 'wagmi';
 import Parameters from '@/components/tokenContract/Parameters';
 import MintNft from '@/components/nftContract/MintNft';
 
+// entry point for the user
 export default async function Home() {
   const { address } = useAccount();
 
+  // Tries to load a compiled circuit from a JSON file. 
   let compiledCircuit;
   try {
     compiledCircuit = require("../../axiom/data/compiled.json");
   } catch (e) {
     console.log(e);
   }
+  // if circuit is not found, it gives the user instructions on how to compile it
   if (compiledCircuit === undefined) {
     return (
       <>
@@ -70,6 +73,7 @@ export default async function Home() {
               <b>Step 2</b>
             </p>
             <AdvanceStepButton
+            // forwards search parameters based on the users address to the next page so the 'check' page has access to that data
               label="Check Eligibility"
               href={"/check?" + forwardSearchParams({ connected: address })}
             />
