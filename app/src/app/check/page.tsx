@@ -2,7 +2,7 @@ import AdvanceStepButton from "@/components/ui/AdvanceStepButton";
 import Title from "@/components/ui/Title";
 import { findMostRecentMintTx } from "@/lib/parseRecentTx";
 
-//Interface to specify the expected props for the Check component
+// Interface to specify the expected props for the Check component
 interface PageProps {
   params: Params;
   searchParams: SearchParams;
@@ -48,7 +48,7 @@ export default async function Check({ searchParams }: PageProps) {
       return renderNotEligible();
     }
 
-    //if the user is eligible, they can click the button to go vote
+    // if the user is eligible, they can click the button to go vote
     // the button forwards the user to the vote page with the necessary search parameters
     return (
       <>

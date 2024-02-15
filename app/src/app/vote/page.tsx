@@ -24,7 +24,7 @@ export default async function Vote({ searchParams }: PageProps) {
   const blockNumber = searchParams?.blockNumber as string ?? "";
   const tokenId = searchParams?.tokenId as string ?? "";
 
-  // Gets transaction detailes based on txHash and calucaltes the transaction index
+  // Gets transaction details based on txHash and calucaltes the transaction index
   const tx = await publicClient.getTransaction({
     hash: txHash as `0x${string}`,
   });
