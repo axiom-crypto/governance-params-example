@@ -3,7 +3,8 @@ import GovernanceToken from '@/lib/abi/GovernanceToken.json';
 import { publicClient } from "@/lib/viemClient";
 
 export const revalidate = 0;
-
+// Fetches data related to tax rate, reward rate, and total votes from the governance contract
+// Formats and displays via a react compnent
 export default async function Parameters() {
   const taxRate = await publicClient.readContract({
     address: Constants.GOVERNANCE_ADDR as `0x${string}`,
