@@ -28,12 +28,7 @@ contract GovernanceTokenTest is AxiomTest {
 
         governanceNft = GovernanceNFT(0x271AF2Af5eDeFD176c23bAd4C7139e9C37E3B110);
 
-        input = AxiomInput({
-            nftContract: address(governanceNft),
-            mintBlock: 5_140_363,
-            mintTxNo: 20,
-            vote: 1
-        });
+        input = AxiomInput({ nftContract: address(governanceNft), mintBlock: 5_140_363, mintTxNo: 20, vote: 1 });
 
         querySchema = axiomVm.readCircuit("app/axiom/governance.circuit.ts");
 
@@ -43,19 +38,26 @@ contract GovernanceTokenTest is AxiomTest {
             uint64(block.chainid),
             querySchema,
             100, // 10.0% taxRate
-            100  // 10.0% rewardRate
+            100 // 10.0% rewardRate
         );
     }
 
     function test_simple_example() public {
         // create a query into Axiom with default parameters
-        Query memory q = query(querySchema, abi.encode(input), address(governanceToken));
+        Query memory q = query(
+            querySchema,
+            abi.encode(input),
+            address(governanceToken),
+            bytes(""),
+            IAxiomV2Query.AxiomV2FeeData({ maxFeePerGas: 25 gwei, callbackGasLimit: 1_000_000, overrideAxiomQueryFee: 0 }),
+            MINTER_ADDR
+        );
 
         // send the query to Axiom
         q.send();
 
-        // prank fulfillment of the query, returning the Axiom results 
-        bytes32[] memory results = q.prankFulfill(MINTER_ADDR);
+        // prank fulfillment of the query, returning the Axiom results
+        bytes32[] memory results = q.prankFulfill();
 
         // parse Axiom results and verify length is as expected
         assertEq(results.length, 3);
