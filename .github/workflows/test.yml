@@ -1,6 +1,11 @@
 name: test
 
-on: workflow_dispatch
+on:
+  workflow_dispatch:
+  pull_request:
+  push:
+    branches:
+      - "**"
 
 env:
   FOUNDRY_PROFILE: ci
@@ -20,7 +25,7 @@ jobs:
       - name: Install Foundry
         uses: foundry-rs/foundry-toolchain@v1
         with:
-          version: nightly
+          version: nightly-293fad73670b7b59ca901c7f2105bf7a29165a90
 
       - name: Run Forge build
         run: |
@@ -30,5 +35,6 @@ jobs:
 
       - name: Run Forge tests
         run: |
+          export PROVIDER_URI_SEPOLIA=${{ secrets.PROVIDER_URI_SEPOLIA }}
           forge test -vvv
         id: test

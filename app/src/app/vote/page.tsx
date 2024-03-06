@@ -19,11 +19,12 @@ interface SearchParams {
 }
 
 export default async function Vote({ searchParams }: PageProps) {
+  // destructures the searchParams to get the txHash, blockNumber, and tokenId
   const txHash = searchParams?.txHash as string ?? "";
   const blockNumber = searchParams?.blockNumber as string ?? "";
   const tokenId = searchParams?.tokenId as string ?? "";
 
-  // Get transaction index
+  // Gets transaction details based on txHash and calucaltes the transaction index
   const tx = await publicClient.getTransaction({
     hash: txHash as `0x${string}`,
   });
@@ -49,6 +50,8 @@ export default async function Vote({ searchParams }: PageProps) {
   //   }
   // })
 
+  // The BuildQuery component is passed the inputs, callbackAddress, and tokenId
+  // This component allows the user to vote either yes or no and submits the vote using BuildQuery
   return (
     <>
       <Title>
