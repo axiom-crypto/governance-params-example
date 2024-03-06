@@ -65,7 +65,7 @@ export default async function Vote({ searchParams }: PageProps) {
       <div className="flex flex-col gap-2 items-center">
         <BuildQuery
           inputs={inputs}
-          callbackAddress={Constants.GOVERNANCE_ADDR}
+          callbackTarget={Constants.GOVERNANCE_ADDR}
           tokenId={tokenId}
         />
       </div>

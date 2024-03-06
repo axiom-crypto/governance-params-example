@@ -14,11 +14,11 @@ import { UserInput } from "@axiom-crypto/client";
 
 export default function BuildQuery({
   inputs,
-  callbackAddress,
+  callbackTarget,
   tokenId,
 }: {
   inputs: UserInput<typeof jsonInputs>,
-  callbackAddress: string;
+  callbackTarget: string;
   tokenId: string,
 }) {
   const { address } = useAccount();
@@ -41,10 +41,8 @@ export default function BuildQuery({
       ...inputs,
       vote: voteValue,
     };
-    const callbackExtraData = pad(address);
-    console.log("callbackExtraData", callbackExtraData);
-    setParams(inputsWithVote, callbackAddress, callbackExtraData, address);
-  }, [voteValue, setParams, inputs, callbackAddress, address]);
+    setParams(inputsWithVote, callbackTarget, "", address);
+  }, [voteValue, setParams, inputs, callbackTarget, address]);
 
   useEffect(() => {
     const buildQuery = async () => {
