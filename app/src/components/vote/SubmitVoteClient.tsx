@@ -23,7 +23,13 @@ export default function SubmitVoteClient() {
   const [showExplorerLink, setShowExplorerLink] = useState(false);
 
   // Prepare hook for the sendQuery transaction
-  const { data } = useSimulateContract(builtQuery!);
+  const { data } = useSimulateContract({
+    address: builtQuery!.address as `0x${string}`,
+    abi: builtQuery!.abi,
+    functionName: builtQuery!.functionName,
+    value: builtQuery!.value,
+    args: builtQuery!.args,
+  });
   const { isPending, isSuccess, writeContract } = useWriteContract();
 
   useEffect(() => {
