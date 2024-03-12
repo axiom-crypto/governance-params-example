@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import {
-  useAccount,
   useWriteContract,
   useSimulateContract,
   useWatchContractEvent,
@@ -17,7 +16,6 @@ import { Constants } from "@/shared/constants";
 import GovernanceToken from '@/lib/abi/GovernanceToken.json'
 
 export default function SubmitVoteClient() {
-  const { address } = useAccount();
   const router = useRouter();
   const { builtQuery } = useAxiomCircuit();
   const [showExplorerLink, setShowExplorerLink] = useState(false);
