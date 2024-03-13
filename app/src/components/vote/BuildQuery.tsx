@@ -12,6 +12,7 @@ import GovernanceToken from "@/lib/abi/GovernanceToken.json";
 import AdvanceStepButton from "../ui/AdvanceStepButton";
 import { UserInput } from "@axiom-crypto/client";
 
+// BuildQuery takes in inputs, callbackAddress, and tokenId as props
 export default function BuildQuery({
   inputs,
   callbackTarget,
@@ -23,6 +24,8 @@ export default function BuildQuery({
 }) {
   const { address } = useAccount();
   const [voteValue, setVoteValue] = useState<number | null>(null);
+
+  // Initializes vairables by destructuring the return values of the useAxiomCircuit hook
   const {
     build,
     builtQuery,
@@ -44,6 +47,10 @@ export default function BuildQuery({
     setParams(inputsWithVote, callbackTarget, "", address);
   }, [voteValue, setParams, inputs, callbackTarget, address]);
 
+  // Defines buildQuery function which checks that voteValue is not null
+  // and that areParamsSet is true. If both are true, it calls the buildQuery function
+  // When coteValue, build, or areParamsSet change, the buildQuery function is called to ensure 
+  // the query is built if any of these change
   useEffect(() => {
     const buildQuery = async () => {
       if (voteValue === null) {
