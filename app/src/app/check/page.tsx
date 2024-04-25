@@ -42,7 +42,6 @@ export default async function Check({ searchParams }: PageProps) {
     const txHash = log?.transactionHash;
     const blockNumber = log?.blockNumber;
     const tokenId = log?.topics[3].toString();
-    console.log(txHash, blockNumber, tokenId)
 
     if (txHash === undefined || !blockNumber === undefined) {
       return renderNotEligible();
