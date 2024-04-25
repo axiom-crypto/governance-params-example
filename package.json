@@ -1,6 +1,6 @@
 {
   "name": "governance-params-example",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -10,7 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@axiom-crypto/client": "2.0.8",
+    "@axiom-crypto/client": "2.0.9",
     "dotenv": "^16.3.2",
     "viem": "^2.5.0"
   },

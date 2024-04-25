@@ -7,7 +7,6 @@ import LoadingAnimation from "../ui/LoadingAnimation";
 import SubmitVoteClient from "./SubmitVoteClient";
 import { useAccount, useReadContract } from "wagmi";
 import { Constants } from "@/shared/constants";
-import { pad } from "viem";
 import GovernanceToken from "@/lib/abi/GovernanceToken.json";
 import AdvanceStepButton from "../ui/AdvanceStepButton";
 import { UserInput } from "@axiom-crypto/client";

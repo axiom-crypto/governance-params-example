@@ -38,18 +38,6 @@ export default async function Vote({ searchParams }: PageProps) {
     vote: 0,  // Update this value later inside `BuildQuery` component
   }
 
-  // // Listen for `ParametersUpdated` event
-  // publicClient.watchContractEvent({
-  //   address: Constants.ERC20_ADDR as `0x${string}`,
-  //   abi: UselessGovernanceToken.abi,
-  //   eventName: 'ParametersUpdated',
-  //   onLogs: logs => {
-  //     console.log(logs);
-  //     console.log("Voted successfully!")
-  //     redirect(`success/?connected=${connected}`);
-  //   }
-  // })
-
   // The BuildQuery component is passed the inputs, callbackAddress, and tokenId
   // This component allows the user to vote either yes or no and submits the vote using BuildQuery
   return (
